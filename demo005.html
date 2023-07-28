@@ -1,0 +1,41 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-28 10:07:40
+ * @FilePath: \st-vue3\demo005.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo005页面</title>
+</head>
+
+<body>
+    <div id="demo005">
+        {{ messag001 }}
+        <!-- 下面测试v-show和v-if的差别 -->
+        <!-- 同样是true的情况下，二者一模一样 -->
+        <!-- v-show本质上是添加了display=none来设置是否展示 -->
+        <div v-show="messag005" class="box1">我是box1</div>
+        <!-- v-if本质是根据条件，直接判断是否需要渲染 -->
+        <div v-if="messag005" class="box2">我是box2</div>
+    </div>
+</body>
+<script src="./vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo005',
+        data: {
+            messag001: '123',
+            messag005: false
+        }
+    })
+</script>
+
+</html>
