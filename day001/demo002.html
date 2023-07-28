@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+	<meta charset = "UTF-8">
+	<meta content = "width=device-width, initial-scale=1.0" name = "viewport">
+	<title>demo002页面</title>
+</head>
+
+<body>
+<div id = "demo002">
+	{{ showMe }}
+	<!-- 上面就是插值表达式 -->
+	<!-- 只要是表达式，就可以放到大括号当中 -->
+	<!-- 可以粗暴理解为，表达式中存放的是一个变量 -->
+	<!-- 变量必须在data中声明 -->
+	<br>
+	<hr>
+	{{ showMe.toUpperCase() }}
+	<!-- 直接利用html中存在的函数，进行表达操作 -->
+	{{ showMe + '你好' }}
+	<p>{{ showMe + '我是123' }}</p>
+	<p>{{ showMe2 }}</p>
+	<!-- 还可以像下面一样，使用三元运算符 -->
+	<p>{{ showMe2 >= 18 ? '成年' : '未成年'}}</p>
+	<hr>
+	<!-- 直接拿到json中的变量 -->
+	<p>{{ person1.name }}</p>
+</div>
+<script src = "../vue.js"></script>
+<script>
+	const app = new Vue({
+		el: '#demo002',
+		data: {
+			showMe: 'showMe1',
+			showMe2: '11111111',
+			person1: {
+				name: 'junw',
+				age: 12
+			}
+		}
+	})
+</script>
+</body>
+
+</html>

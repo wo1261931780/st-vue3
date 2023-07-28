@@ -1,0 +1,45 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-28 10:18:46
+ * @FilePath: \st-vue3\demo006.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+	<meta charset = "UTF-8">
+	<meta content = "width=device-width, initial-scale=1.0" name = "viewport">
+	<title>demo006页面</title>
+</head>
+
+<body>
+<div id = "demo006">
+	<p v-if = "gender===1">我是男</p>
+	<p v-else = "">我是女</p>
+	<hr>
+	<p v-if = "score>=90">我是A</p>
+	<p v-else-if = "score>=80">我是B</p>
+	<p v-else-if = "score>=60">我是C</p>
+	<p v-else = "">我是D</p>
+	<!-- 上面的v-if-else实际是需要组合使用的 -->
+	<!-- 从这里也可以看出，前端不是强语法结构的语言 -->
+</div>
+</body>
+<script src = "../vue.js"></script>
+
+<script>
+	const app = new Vue({
+		el: '#demo006',
+		data: {
+			// gender: '1',
+			// 这里不能用括号，否则认为是字符串
+			gender: 1,
+			score: 100
+		}
+	})
+</script>
+
+</html>

@@ -2,8 +2,8 @@
  * @Author: junw wo1261931780@gmail.com
  * @Date: 2023-07-27 18:43:48
  * @LastEditors: junw wo1261931780@gmail.com
- * @LastEditTime: 2023-07-28 09:27:29
- * @FilePath: \st-vue3\demo001.html
+ * @LastEditTime: 2023-07-28 15:51:49
+ * @FilePath: \st-vue3\demo012.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <!DOCTYPE html>
@@ -12,27 +12,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>demo003页面</title>
+    <title>demo012页面</title>
 </head>
 
 <body>
-    <div id="demo003">
-        {{ messag001 }}
+    <div id="demo012">
+        {{ messag012 }}
         <hr>
         <div>{{ messag002 }}</div>
-        <!-- 可以根据下面的el名称 -->
-        <!-- 直接在控制台访问对应的变量 -->
     </div>
+    <div>123</div>
 
 </body>
-<script src="./vue.js"></script>
+<script src="../vue.js"></script>
 
 <script>
     const app = new Vue({
         // el就是选择器，配置我们vue管理的是哪个盒子
-        el: '#demo003',
+        el: '#demo012',
         data: {
-            messag001: "111",
+            messag012: "111",
             messag002: "222"
         }
     })

@@ -1,0 +1,42 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-28 15:48:29
+ * @FilePath: \st-vue3\demo011.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+	<meta charset = "UTF-8">
+	<meta content = "width=device-width, initial-scale=1.0" name = "viewport">
+	<title>demo011页面</title>
+</head>
+
+<body>
+<div id = "demo011">
+	<button @click = "demoIndex--" v-show = "demoIndex>0">上一页</button>
+	<image :alt = "" :src = "demoList[demoIndex]">我是图片</image>
+	<button @click = "demoIndex++" v-show = "demoIndex<demoList.length">下一页</button>
+</div>
+<div>123</div>
+
+</body>
+<script src = "../vue.js"></script>
+
+<script>
+	const app = new Vue({
+		el: '#demo011',
+		data: {
+			demoIndex: 0,
+			demoList: [
+				"1",
+				"2"
+			]
+		}
+	})
+</script>
+
+</html>
