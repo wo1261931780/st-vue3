@@ -1,0 +1,76 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-28 17:19:26
+ * @FilePath: \st-vue3\demo015.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo015页面</title>
+</head>
+
+<body>
+    <div id="demo015">
+        我是输入框：<input type="text" v-model="demoInput"><button @click="addOne(demoInput)">添加</button>
+        <hr>
+        <div v-for="(item,index) in demoList">
+            <!-- <div :key="item.id">"我是项目"{{ item.id }}--{{item.content}}</div> -->
+            <!-- 这里为了保证连贯性，使用的是自动生成的index -->
+            <span :key="item.id">"我是项目"{{ index+1 }}--{{item.content}}</span>
+            <button @click="deleteOne(item.id)">删除</button>
+        </div>
+        <hr>
+        <button v-show="!demoList.length==0">合计：{{demoList.length}}</button>
+        <button v-show="!demoList.length==0" @click="clearable()">清空</button>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo015',
+        data: {
+            demoInput: '',
+            demoList: [
+                { id: 1, content: "111" },
+                { id: 2, content: "222" },
+                { id: 3, content: "333" }
+            ]
+        },
+        methods: {
+            addOne(demoInput) {
+                console.log(demoInput)
+                // 这里需要做一个判断
+                if (demoInput.trim() === '') {
+                    alert("请输入数据")
+                    return
+                }
+                // 这里不需要做一个等号，直接设置即可
+                this.demoList.unshift({
+                    id: +new Date(),
+                    content: demoInput.trim()
+                })
+                this.demoInput = ''
+            },
+            deleteOne(itemId) {
+                console.log("我是id" + itemId)
+                // 一样的，这里使用过滤器
+                this.demoList = this.demoList.filter(item => item.id != itemId)
+            },
+            clearable() {
+                console.log("我是清空功能")
+                // this.demoList = ''
+                // 这里必须保持数组的形式，否则会出错
+                this.demoList = []
+            }
+        },
+    })
+</script>
+
+</html>

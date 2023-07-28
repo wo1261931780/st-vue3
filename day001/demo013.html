@@ -1,0 +1,58 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-28 16:40:39
+ * @FilePath: \st-vue3\demo013.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo013页面</title>
+</head>
+
+<body>
+    <div id="demo013">
+        <div v-for="(item,index) in dataList" :key="item.index">
+            <!-- :key="item.index"这个是需要手动添加的 -->
+            <!-- 相当于，给我的每一个div做了绑定 -->
+            <!-- 这是代码的健壮性问题 -->
+            <!-- 如果没有设置key，那么后续添加css等参数的时候，就会因为没有唯一绑定，出现异常 -->
+            <span>'我是'+{{ item.index }}</span>
+            <span>--{{ item.name }}--</span>
+            <span>{{ item.author }}+'数据'</span>
+            <button @click="showMe(index)" style="display: inline-block;">删除{{index}}</button>
+        </div>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo013',
+        data: {
+            count: "111",
+            dataList: [
+                { index: 1, name: "name1", author: "author1" },
+                { index: 2, name: "name2", author: "author2" },
+                { index: 3, name: "name3", author: "author3" },
+                { index: 4, name: "name4", author: "author4" }
+            ]
+        },
+        methods: {
+            showMe(index) {
+                console.log("我是删除按钮" + index)
+                // 删除功能，实际上涉及到了一个过滤器的过程
+                // this.dataList.filter(item => item.index != index)
+                // filter不会改变原有的数组，只会将我们的数组，放到一个新的结构中去
+                this.dataList = this.dataList.filter(item => item.index != index)
+            }
+        },
+    })
+</script>
+
+</html>
