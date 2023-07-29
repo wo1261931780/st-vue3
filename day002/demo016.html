@@ -1,0 +1,86 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 06:42:19
+ * @FilePath: \st-vue3\demo016.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo016页面</title>
+</head>
+
+<body>
+    <div id="demo016">
+        <!-- 这里测试按键事件 -->
+        我是输入框：<input type="text" @keyup="showMeOne(demoInput)" v-model="demoInput">
+        <!-- 我是输入框：<input type="text" @keyup.enter="addOne(demoInput)" v-model="demoInput"> -->
+        <button @click="addOne(demoInput)">添加</button>
+        <!-- @keyup本质上，就是在设置触发，不管按下哪个按钮都是会生效的 -->
+        <!-- @keyup.enter=""这是进一步设置了按下回车键会触发的事件 -->
+        <!-- @keyup.enter="addOne(demoInput)"根据结构可以看出，括号内使用的是函数，代表触发的是一个函数事件 -->
+        <hr>
+        <div v-for="(item,index) in demoList">
+            <span :key="item.id">"我是项目"{{ index+1 }}--{{item.content}}</span>
+            <button @click="deleteOne(item.id)">删除</button>
+        </div>
+        <hr>
+        <button v-show="!demoList.length==0">合计：{{demoList.length}}</button>
+        <button v-show="!demoList.length==0" @click="clearable()">清空</button>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo016',
+        data: {
+            demoInput: '',
+            demoList: [
+                { id: 1, content: "111" },
+                { id: 2, content: "222" },
+                { id: 3, content: "333" }
+            ]
+        },
+        methods: {
+            addOne(demoInput) {
+                console.log(demoInput)
+                if (demoInput.trim() === '') {
+                    alert("请输入数据")
+                    return
+                }
+                this.demoList.unshift({
+                    id: +new Date(),
+                    content: demoInput.trim()
+                })
+                this.demoInput = ''
+            },
+            deleteOne(itemId) {
+                console.log("我是id" + itemId)
+                this.demoList = this.demoList.filter(item => item.id != itemId)
+            },
+            clearable() {
+                console.log("我是清空功能")
+                this.demoList = []
+            },
+            showMeOne(e) {
+                // 默认展示的是一个object
+                // 对象内有大量的数据，
+                // 其中，key代表的就是按键的按钮
+                console.log(e)
+                // 这里实际上是完成了一个过滤的操作
+                // 如果key是enter键，那么打印对应的数据
+                if (e.key === 'enter') {
+                    console.log("我是输入框中的数据：" + this.demoInput)
+                }
+            }
+        },
+    })
+</script>
+
+</html>

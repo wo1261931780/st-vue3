@@ -1,0 +1,53 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 07:03:05
+ * @FilePath: \st-vue3\demo018.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo018页面</title>
+    <style>
+        /* 设置样式表 */
+        .show1 {
+            width: 100px;
+            height: 100px;
+        }
+
+        .show2 {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo018">
+        <div class="show1 show2">我是样式</div>
+        <!-- 上面是默认写法 -->
+        <hr>
+        <div class="show1" :class="{show1:true,show2:false}">我是样式</div>
+        <!-- true表示类生效，false不生效 -->
+        <hr>
+        <!-- <div class="show1" :class="[show1,show2]">我是样式</div> -->
+        <!-- 上面这种写法是错误的 -->
+        <div class="show1" :class="['show1','show2']">我是样式</div>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo018',
+        data: {
+            messag018: "111"
+        }
+    })
+</script>
+
+</html>

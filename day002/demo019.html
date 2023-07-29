@@ -1,0 +1,58 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 07:18:05
+ * @FilePath: \st-vue3\demo019.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo019页面</title>
+    <style>
+        .bgm {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo019">
+        <button>我是按钮1</button>
+        <hr>
+        <!-- <div v-for="(item,index) in demoList" :key="item.id" @click="changeStyle(item.id)"> -->
+            <!-- 上下两个都是可以的，一个是使用函数控制，一个直接赋值 -->
+        <div v-for="(item,index) in demoList" :key="item.id" @click="styleIndex=item.id">
+            <!-- <div :class="bgm">{{item.name}}</div> -->
+            <!-- 上面是默认赋值 -->
+            <div :class="{bgm:index===styleIndex}">{{item.name}}</div>
+            <!-- 类选择器，实际上可以使用一个表达式的格式完成 -->
+        </div>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo019',
+        data: {
+            styleIndex: 0,
+            demoList: [
+                { id: 0, name: '111' },
+                { id: 1, name: '222' },
+                { id: 2, name: '333' }
+            ]
+        },
+        methods: {
+            changeStyle(id) {
+                this.styleIndex = id
+            }
+        },
+    })
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 07:26:41
+ * @FilePath: \st-vue3\demo020.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo020页面</title>
+    <style>
+        .show1 {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo020">
+        <!-- <div :class="show1">我是盒子</div> -->
+        <!-- 上面的写法是错误的，不能这样使用 -->
+        <div :class="{show1:true}">我是盒子</div>
+        <hr>
+        <!-- 注意一下下面的格式 -->
+        <!-- 内部是可以用大括号来表示多个属性的 -->
+        <!-- 但是一定要设置冒号，表示绑定 -->
+        <div :class="{show1:true}" :style="{ width: '100px',height:'100px'}">我是盒子</div>
+        <hr>
+        <!-- 除了上面的以外 -->
+        <!-- 因为括号内部是js的格式，所以是不支持横线的 -->
+        <!-- 要么使用驼峰的形式完成，要么使用引号的形式完成 -->
+        <div :class="{show1:true}" :style="{ width: '200px',height:'200px','background-color':'blue'}">我是盒子</div>
+        <hr>
+        <!-- 这里其实还有很多js的语法 -->
+        <div :class="{show1:true}" :style="{ width: '300'+'%'}">我是盒子</div>
+
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo020',
+        data: {
+            messag020: "111"
+        }
+    })
+</script>
+
+</html>

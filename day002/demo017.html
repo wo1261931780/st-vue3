@@ -1,0 +1,47 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 06:50:30
+ * @FilePath: \st-vue3\demo017.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo017页面</title>
+</head>
+
+<body>
+    <div id="demo017">
+        <hr>
+        <!-- 我是姓名输入框：<input type="text" v-model="username"> -->
+        我是姓名输入框：<input type="text" v-model.trim="username">
+        <!-- 这里直接删除了首尾的空格 -->
+        <!-- 绑定的同时做好了数据格式化操作 -->
+        <!-- 但是数据内部的空格不会有任何变化 -->
+        <br>
+        <!-- 我是年龄输入框：<input type="text" v-model="age"> -->
+        我是年龄输入框：<input type="text" v-model.number="age">
+        <!-- 这里就是将字符串转化为数字的格式 -->
+        <button @click.stop="">我是冒泡按钮</button>
+
+        <button @click.prevent="">我是阻止按钮</button>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo017',
+        data: {
+            username: "111",
+            age: "222"
+        }
+    })
+</script>
+
+</html>

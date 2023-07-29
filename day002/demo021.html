@@ -1,0 +1,60 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 07:43:59
+ * @FilePath: \st-vue3\demo021.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo021页面</title>
+</head>
+
+<body>
+    <div id="demo021">
+        姓名：<input type="text" v-model="username">
+        <hr>
+        是否单身：
+        <input type="checkbox" v-model="isSigle"></input>
+        <br>
+        性别：
+        <!-- 因为是单选框，所以需要设置一组的name属性 -->
+        <!-- 设置了以后，就能保证互斥 -->
+        <input type="radio" name="gender" v-model="gender" value="1">男</input>
+        <input type="radio" name="gender" v-model="gender" value="0">女</input>
+        <br>
+        所在城市：
+        <select name="city" id="cityId" v-model="city">
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">广州</option>
+            <option value="4">深圳</option>
+        </select>
+        <br>
+        自我描述：
+        <br>
+        <textarea v-model="myself"></textarea>
+
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo021',
+        data: {
+            username: "111",
+            isSigle: true,
+            gender: 1,
+            city: 3,
+            myself: "111"
+        }
+    })
+</script>
+
+</html>

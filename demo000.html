@@ -1,0 +1,39 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 06:56:03
+ * @FilePath: \st-vue3\demo000.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo000页面</title>
+</head>
+
+<body>
+    <div id="demo000">
+        {{ messag000 }}
+        <hr>
+        <div>{{messag002}}</div>
+    </div>
+    <div>123</div>
+
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo000',
+        data: {
+            messag000: "111",
+            messag002: "222"
+        }
+    })
+</script>
+
+</html>
