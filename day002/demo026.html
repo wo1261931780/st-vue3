@@ -1,0 +1,67 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 16:23:03
+ * @FilePath: \st-vue3\demo026.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo026页面</title>
+</head>
+
+<body>
+    <div id="demo026">
+        <textarea name="textarea" id="textareaId" cols="30" rows="10" v-model="textarea1">{{textarea1}}</textarea>
+        <hr>
+        <textarea name="textarea2" id="textarea2Id" cols="30" rows="10"
+            v-model="textarea2right">{{textarea2right}}</textarea>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo026',
+        data: {
+            textarea1: 11,
+            textareaObj: {
+                content1: ""
+            },
+            textarea2right: 0,
+            timerId: null
+        },
+        // 监视器，监视谁就写谁
+        watch: {
+            // 只要数据变化，那么就自动执行
+            // 格式如下：
+            // textarea1(新数据，老数据) {
+            textarea1(newValue, oldValue) {
+                console.log('我是变化的数据：' + newValue, oldValue)
+                this.textarea2right = this.newValue
+                console.log(this.textarea2right)
+                // 因为这里每次变化都会执行一次，可以做防抖优化
+                // 防抖优化，就是延迟执行
+                // setTimeout(()=>{},100)
+                // 上面就是延迟器的语句
+                // 解释一下，大括号内是命令语句
+                // 后面跟着实际就是延迟的毫秒数
+                // setTimeout((
+                // 下面要读取延时器的id，所以要保存一个
+                clearTimeout(this.timerId)
+                // 同时，如果timerId只是暂时性使用，不需要在data中新建一个数据来保存
+                this.timerId = setTimeout(() => {
+                    console.log('我是变化的数据：' + newValue, oldValue)
+                }, 100)
+            }
+        }
+    })
+</script>
+
+</html>
