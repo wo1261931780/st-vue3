@@ -1,0 +1,63 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 08:43:21
+ * @FilePath: \st-vue3\demo023.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo023页面</title>
+</head>
+
+<body>
+    <div id="demo023">
+        first name：<input type="text" v-model="firstName">
+        <br>
+        last name：<input type="text" v-model="lastName">
+        <br>
+        我是全名：{{fullName}}
+        <hr>
+        <button @click="changeNameFn()">改名卡</button>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo023',
+        data: {
+            firstName: '',
+            lastName: '',
+            fullName: ''
+        },
+        methods: {
+            changeNameFn() {
+                this.fullName = '刘佳珺'
+            }
+        },
+        computed: {
+            // changeName(){}
+            // 普通计算属性，就直接写方法即可
+            // 如果要完整写法，就需要写成一个对象的形式
+            changeName: {
+                get() {
+                    this.fullName = this.firstName + this.lastName
+                    return this.fullName
+                },
+                set(value) {
+                    console.log(value)
+                    this.firstName = value.slice(0, 1)
+                    this.lastName = value.slice(1)
+                }
+            }
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 08:13:41
+ * @FilePath: \st-vue3\demo022.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo022页面</title>
+</head>
+
+<body>
+    <div id="demo022">
+        <button @click="changeOne(-1)">减少礼物1</button>
+        <button @click="changeOne(+1)">增加礼物1</button>
+        <div v-for="(item,index) in demoList">
+            <div>礼物id：{{item.id}}，名称：{{item.name}}，价格：{{item.price}}，数量：{{item.count}}</div>
+        </div>
+
+        <hr>
+        <p>礼物总价：{{totalCount}}</p>
+    </div>
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo022',
+        data: {
+            demoList: [
+                { id: 0, name: '111', price: 13, count: 0 },
+                { id: 1, name: '222', price: 11, count: 2 },
+                { id: 2, name: '333', price: 17, count: 1 }
+            ],
+            presentCount: ''
+        },
+        // 计算属性
+        computed: {
+            // 内部其实要写js函数
+            // 具体而言，上面调用的结果，就是函数的内部返回值
+            // 但是上面不能用函数的形式来调用，因为计算属性，本质就是一个属性
+            totalCount() {
+                let totalPrice = this.demoList.reduce((sum, item) => sum + item.price * item.count, 0)
+                // 解释一下上面箭头函数的意思：reduce((sum, item) => sum + item.price, 0)
+                // reduce()就是累加函数
+                // 内部有两个形参，sum表示总和，item表示每一项
+                // (sum, item) => sum + item.price, 0
+                // 箭头右边，表示执行的过程
+                // sum + item.price每次累加每一项的price数据
+                // 0表示从0开始累加
+
+                return totalPrice
+                // 计算属性的好处，是有缓存存在
+                // 一般来说，只调用一次，然后多次展示结果
+            }
+        },
+        methods: {
+            changeOne(count) {
+                // 直接在基础上增减即可
+                this.demoList[0].count = this.demoList[0].count + count
+            }
+        },
+    })
+</script>
+
+</html>

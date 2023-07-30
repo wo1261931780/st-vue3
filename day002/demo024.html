@@ -1,0 +1,103 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-07-30 09:34:42
+ * @FilePath: \st-vue3\demo024.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo024页面</title>
+    <style>
+        .unstatic {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo024">
+        我是科目：<input type="text" v-model.trim="subject">
+        我是成绩：<input type="text" v-model.number="score">
+        <button @click="addOne()">新增</button>
+        <hr>
+        <table>
+            <thead>编号</thead>
+            <thead>科目</thead>
+            <thead>成绩</thead>
+            <thead>操作</thead>
+            <tbody v-if="demoList.length>0">
+                <tr v-for="(item,index) in demoList" :key="item.id">
+                    <td>{{ index +1 }}</td>
+                    <td>{{item.subject}}</td>
+                    <td :class="{unstatic:item.score<60}">{{item.score}}</td>
+                    <td @click="del(item.id)">删除</td>
+                </tr>
+            </tbody>
+            <tbody v-else>暂无数据</tbody>
+            <tfoot></tfoot>
+        </table>
+        <div>总分：{{calTotalScore}}，平均分：{{calAvgScore}}</div>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo024',
+        data: {
+            subject: '',
+            score: 0,
+            demoList: [
+                { id: 0, subject: '111', score: 10 },
+                { id: 1, subject: '222', score: 99 },
+                { id: 2, subject: '333', score: 11 }
+            ]
+        },
+        computed: {
+            calTotalScore() {
+                return this.demoList.reduce((sum, item) => sum + item.score, 0)
+            },
+            calAvgScore() {
+                // return this.demoList.reduce((sum, item) => sum + item.score / this.demoList.length, 0)
+                // 算过一遍，就相当于一个完整属性了
+                // 然后直接计算这里的结果即可
+                // return calTotalScore / this.demoList.length
+                // 上面的写法是错误的，要添加this
+                // return this.calTotalScore / this.demoList.length
+                if(this.demoList.length==0){
+                    return 0
+                }
+                // 保留两位小数
+                return (this.calTotalScore / this.demoList.length).toFixed(2)
+            }
+        },
+        methods: {
+            addOne() {
+                if (!this.subject || typeof this.score !== "number") {
+                    alert('请输入数据')
+                    return
+                }
+                this.demoList.unshift({
+                    id: +new Date(),
+                    subject: this.subject,
+                    scrore: this.score
+                })
+                this.subject = ''
+                this.score = ''
+            },
+            del(index) {
+                this.demoList = this.demoList.filter(item => item.id !== index)
+
+            }
+        },
+    })
+</script>
+
+</html>
