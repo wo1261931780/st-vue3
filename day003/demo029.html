@@ -1,0 +1,65 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-08-06 10:13:29
+ * @FilePath: \st-vue3\demo029.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo029页面</title>
+</head>
+
+<body>
+    <div id="demo029">
+        {{ messag029 }}
+        <hr>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo029',
+        data: {
+            messag029: "111"
+        },
+        beforeCreate() {
+            console.log("我是beforeCreate，我在响应式数据准备好之前", this.messag029)
+            // 因为数据还没有准备好，打印出来的结果如下：
+            // 我是beforeCreate，我在响应式数据准备好之前 undefined
+        },
+        created() {
+            console.log("我是Create，我在响应式数据准备好之后", this.messag029)
+            // 在这个阶段发送数据和请求
+        },
+        beforeMount() {
+            console.log("我是beforeMount，我在响应式数据准备好之前", document.querySelector('div').innerHTML)
+            // 在数据准备好之前，只会打印{ { messag029 } }
+        },
+        mounted() {
+            console.log("我是mounted，我在响应式数据准备好之后", document.querySelector('div').innerHTML)
+            // 准备好以后才会打印具体数字
+        },
+        beforeUpdate() {
+            
+        },
+        updated() {
+            
+        },
+        beforeDestroy() {
+            
+        },
+        destroyed() {
+            
+        },
+    })
+</script>
+
+</html>

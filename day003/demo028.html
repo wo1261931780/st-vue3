@@ -1,0 +1,149 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-08-06 09:27:16
+ * @FilePath: \st-vue3\demo028.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo028页面</title>
+</head>
+
+<body>
+    <div id="demo028">
+        <hr>
+        <div>购物车</div>
+        <div class="tbody">
+            <div v-for="(item,index) in demoList" :key="item.id" :class="{active :item.isChecked}">
+                <div class="td" style="display: inline-block;">
+                    <input type="checkbox" v-model="item.isChecked"></input>
+                </div>
+                <div class="td" style="display: inline-block;">
+                    <img :src="demoImg" alt="图片">
+                </div>
+                <div class="td" style="display: inline-block;">
+                    {{item.presentPrice}}元
+                </div>
+                <div class="td" style="display: inline-block;">
+                    <button @click="changeNum(-1,item.id)" :disabled="item.presentNum<=1">-</button>
+                    {{item.presentNum}}
+                    <button @click="changeNum(+1,item.id)">+</button>
+                </div>
+                <div class="td" style="display: inline-block;">总价：{{item.presentNum*item.presentPrice}}</div>
+                <div style="display: inline-block;">
+                    <button @click="presentDel(item.id)">删除</button>
+                </div>
+            </div>
+            <hr>
+            <input type="checkbox" v-model="isAll">
+            <span>全选</span>
+            <span>总价：{{totalPrice}}</span>
+            <span><button @click="">结算{{totalCount}}</button></span>
+
+        </div>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const shoppingCart = [
+        {
+            id: 123,
+            isChecked: false,
+            presentName: "demo1",
+            presentPrice: 11.11,
+            presentNum: 0
+        },
+        {
+            id: 111,
+            isChecked: false,
+            presentName: "demo2",
+            presentPrice: 22.22,
+            presentNum: 0
+        }]
+    const app = new Vue({
+        el: '#demo028',
+        data: {
+            // demoList: [
+            // ],
+            // 因为有持久化的过程，所以直接从本地读取即可
+            demoList: JSON.parse(localStorage.getItem('list') || shoppingCart),
+            // 避免出现空数组，这里还是赋值一个默认的
+            demoImg: ""
+        },
+        watch: {
+            demoList: {
+                deep: true,
+                handler(newValue, oldValue) {
+                    // 持久化到本地
+                    localStorage.setItem('list', JSON.stringify(newValue))
+                    // 为了方便后面存取数据，所以反过来，上面demoList读取也是从本地获取
+                }
+            }
+        },
+        computed: {
+            // isAll() {
+            //     // return true
+            //     // 根据其他数据来动态修改
+            //     return this.demoList.every(item => item.isChecked === true)
+            //     // every表示每一个
+            //     // 默认计算属性，只能获取，不能设置
+            //     // 所以这里需要一个setter
+            // },
+            isAll: {
+                get() {
+                    return this.demoList.every(item => item.isChecked === true)
+                },
+                set(value) {
+                    // 遍历，然后赋值
+                    this.demoList.forEach(element => {
+                        element.isChecked = true
+                    });
+
+                }
+            },
+            totalCount() {
+                // return this.demoList.reduce((sum, index) => sum, item.num)
+                // 这里要添加判断，选中的才累加
+                return this.demoList.reduce((sum, item) => {
+                    if (item.isChecked) {
+                        return sum + item.presentNum
+                    } else {
+                        return sum
+                    }
+                }, 0)
+
+            },
+            totalPrice() {
+                // const demoTotalPrice = this.demoList.every(item => item.presentNum)
+                // return presentNum * presentPrice
+                return this.demoList.reduce((sum, item) => {
+                    if (item.isChecked) {
+                        return sum + item.presentPrice * item.presentNum
+                    } else {
+                        return sum
+                    }
+                }, 0)
+            }
+        },
+        methods: {
+            changeNum(num, id) {
+                const demoList = this.demoList.find(item => item.id === id)
+                demoList.presentNum += num
+            },
+            presentDel(id) {
+                this.demoList = this.demoList.filter(item => item.id !== id)
+
+            }
+        },
+    })
+</script>
+
+</html>
