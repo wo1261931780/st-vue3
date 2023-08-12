@@ -1,0 +1,140 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-08-12 15:08:12
+ * @FilePath: \st-vue3\demo032.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo032页面</title>
+</head>
+
+<body>
+    <div id="demo032">
+        <table>
+            <thead>id</thead>
+            <thead>选中</thead>
+            <thead>价格</thead>
+            <thead>名称</thead>
+            <thead>总价</thead>
+            <thead>操作</thead>
+            <tbody v-if="demoList.length>=0">
+                <tr v-for="(item,index) in demoList" :key="item.id" :class="{active:item.isChecked}">
+                    <td>{{ index +1 }}</td>
+                    <!-- <input type="checkbox" :checked="item.isChecked"></input> -->
+                    <td><input type="checkbox" v-model="item.isChecked"></input></td>
+                    <!-- 这里一定要放到td中，才能获取item -->
+                    <td>
+                        <button :disabled="item.num===1" @click="changeOne(item.id,-1)">-</button>
+                        {{item.num}}
+                        <button @click="changeOne(item.id,1)">+</button>
+                    </td>
+                    <td>{{item.iconName}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.price*item.num}}</td>
+                    <td @click="del(item.id)">删除</td>
+                </tr>
+            </tbody>
+            <tbody v-else="">暂无数据</tbody>
+            <tfoot></tfoot>
+        </table>
+        <hr>
+        <input type="checkbox" v-model="isCheckAll">全选
+        <!-- <span style="width: 30%;"></span> -->
+        <div>我是价格：{{countTotalPrice}}</div>
+        <button>总数：{{countTotalCount}}</button>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const defaultArr = [
+        {
+            id: 1,
+            isChecked: true,
+            num: 11,
+            price: 111,
+            iconName: "aaaaa"
+        },
+        {
+            id: 2,
+            isChecked: false,
+            num: 22,
+            price: 222,
+            iconName: "bbbbb"
+        },
+        {
+            id: 3,
+            isChecked: true,
+            num: 33,
+            price: 333,
+            iconName: "ccccc"
+        }]
+    const app = new Vue({
+        el: '#demo032',
+        data: {
+            demoList: JSON.parse(localStorage.getItem('list')) || []
+        },
+        methods: {
+            del(id) {
+                console.log("我是点击事件" + id)
+                this.demoList = this.demoList.filter(item => item.id !== id)
+            },
+            changeOne(id, number) {
+                // this.demoList[id]=
+                let fruit = this.demoList.find(item => item.id === id)
+                console.log(fruit)
+                fruit.num += number
+            }
+        },
+        watch: {
+            deep: true,
+            handler(newValue) {
+                console.log(newValue)
+                localStorage.setItem('item', JSON.stringify(newValue))
+            }
+        },
+        computed: {
+            isCheckAll: {
+                get() {
+                    return this.demoList.every(item => item.isChecked)
+                },
+                set(value) {
+                    console.log("我是set")
+                    this.demoList.forEach(element => {
+                        element.isChecked = value
+                        // 这里不用手动给tf
+                        // 默认的就自带了tf，直接把value数值set进去就可以了
+                    });
+                }
+            },
+            countTotalPrice() {
+                return this.demoList.reduce((sum, item) => {
+                    if (item.isChecked) {
+                        return sum + item.num * item.price
+                    } else {
+                        return sum
+                    }
+                }, 0)
+            },
+            countTotalCount() {
+                return this.demoList.reduce((sum, item) => {
+                    if (item.isChecked) {
+                        return sum + item.num
+                    } else {
+                        return sum
+                    }
+                }, 0)
+            }
+        }
+    })
+</script>
+
+</html>

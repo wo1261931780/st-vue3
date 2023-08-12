@@ -1,0 +1,71 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-07-27 18:43:48
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-08-12 17:03:18
+ * @FilePath: \st-vue3\demo032.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo032页面</title>
+</head>
+
+<body>
+    <div id="demo032">
+        {{ messag032 }}
+        <hr>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#demo032',
+        data: {
+            messag032: "111"
+        },
+        async created() {
+            // 发送请求的过程
+            const res = await axios.get('', {
+                // get和del都是param中的参数
+                // await必须放到async中
+                params: {
+                    creator: '123'
+                }
+            })
+            console.log()
+            this.getList()
+            // 封装的好处，一次设置，多次调用
+            this.name = ''
+            this.price = ''
+        },
+        methods: {
+            async getList() {
+                console.log("我是渲染列表")
+            },
+            async addOne() {
+                if (!this.name) {
+                    alert("请输入姓名")
+                    return
+                }
+                if (typeof this.price !== "number") {
+                    alert('请输入')
+                }
+                console.log("我是新增")
+            },
+            delOne(id){
+                // axios.delete('https://123.com${demo}')
+                // 注意一下这里，反引号，不写死
+                axios.delete(`https://123.com${demo}`)
+            }
+        },
+    })
+</script>
+
+</html>
