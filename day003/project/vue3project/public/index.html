@@ -1,17 +1,35 @@
+<!--
+ * @Author: junw wo1261931780@gmail.com
+ * @Date: 2023-08-12 19:24:39
+ * @LastEditors: junw wo1261931780@gmail.com
+ * @LastEditTime: 2023-08-12 19:43:15
+ * @FilePath: \vue3project\public\index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <!DOCTYPE html>
 <html lang="">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+</head>
+
+<body>
+    <!-- 给不支持js的浏览器一个提示 -->
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
     </noscript>
+    <!-- vue所管理的容器 -->
+    <!-- 这也是以后结构渲染的容器 -->
     <div id="app"></div>
+    <!-- 这里实际只是个容器，我们不会针对这里做开发 -->
     <!-- built files will be auto injected -->
-  </body>
+</body>
+
 </html>
