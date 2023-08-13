@@ -175,7 +175,9 @@
         <ul>
           <li>
             <a href="#">
-              <div class="pic"><img src="@/assets/images/goods1.png" alt="" /></div>
+              <div class="pic">
+                <img src="@/assets/images/goods1.png" alt="" />
+              </div>
               <div class="txt">
                 <h4>KN95级莫兰迪色防护口罩</h4>
                 <p>¥ <span>79</span></p>
@@ -184,7 +186,9 @@
           </li>
           <li>
             <a href="#">
-              <div class="pic"><img src="@/assets/images/goods2.png" alt="" /></div>
+              <div class="pic">
+                <img src="@/assets/images/goods2.png" alt="" />
+              </div>
               <div class="txt">
                 <h4>KN95级莫兰迪色防护口罩</h4>
                 <p>¥ <span>566</span></p>
@@ -193,7 +197,9 @@
           </li>
           <li>
             <a href="#">
-              <div class="pic"><img src="@/assets/images/goods3.png" alt="" /></div>
+              <div class="pic">
+                <img src="@/assets/images/goods3.png" alt="" />
+              </div>
               <div class="txt">
                 <h4>法拉蒙高颜值记事本可定制</h4>
                 <p>¥ <span>58</span></p>
@@ -202,7 +208,9 @@
           </li>
           <li>
             <a href="#">
-              <div class="pic"><img src="@/assets/images/goods4.png" alt="" /></div>
+              <div class="pic">
+                <img src="@/assets/images/goods4.png" alt="" />
+              </div>
               <div class="txt">
                 <h4>科技布布艺沙发</h4>
                 <p>¥ <span>3759</span></p>
@@ -257,7 +265,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- 最新专题 -->
     <div class="topic wrapper">
       <div class="title">
@@ -455,7 +463,7 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style></style>
