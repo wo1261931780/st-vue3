@@ -13,7 +13,7 @@
     </div>
     <div class="bd">
       <ul>
-        <li>
+        <!-- <li>
           <a href="#">
             <div class="pic">
               <img src="@/assets/images/goods1.png" alt="" />
@@ -56,7 +56,12 @@
               <p>¥ <span>3759</span></p>
             </div>
           </a>
-        </li>
+        </li> -->
+        <!-- 因为已经完成了组件化，所以这里直接替换即可 -->
+        <BaseGoodsItem></BaseGoodsItem>
+        <BaseGoodsItem></BaseGoodsItem>
+        <BaseGoodsItem></BaseGoodsItem>
+        <BaseGoodsItem></BaseGoodsItem>
       </ul>
     </div>
   </div>

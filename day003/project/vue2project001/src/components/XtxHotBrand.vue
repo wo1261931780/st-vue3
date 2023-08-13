@@ -13,7 +13,7 @@
       </div>
       <div class="bd">
         <ul>
-          <li>
+          <!-- <li>
             <a href="#">
               <img src="@/assets/images/hot1.png" alt="" />
             </a>
@@ -37,7 +37,8 @@
             <a href="#">
               <img src="@/assets/images/hot5.png" alt="" />
             </a>
-          </li>
+          </li> -->
+          <BaseBrandItem v-for="item in 5" :key="item"></BaseBrandItem>
         </ul>
       </div>
     </div>
