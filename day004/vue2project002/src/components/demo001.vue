@@ -1,11 +1,4 @@
-<!--
- * @Author: junw wo1261931780@gmail.com
- * @Date: 2023-08-13 20:31:42
- * @LastEditors: junw wo1261931780@gmail.com
- * @LastEditTime: 2023-08-13 20:45:36
- * @FilePath: \vue2project002\src\components\demo001.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
+
 <template>
   <div>123</div>
 </template>
@@ -33,7 +26,7 @@ export default {
   2.css选择器后面，被自动处理，添加上了属性选择器
   div[data-v-5f6a9d56]
 */
-div{
+div {
   border: 3px solid blue;
   margin: 30px;
 }

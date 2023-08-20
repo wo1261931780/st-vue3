@@ -1,13 +1,9 @@
 <template>
-  <div class="base-one">
-    BaseOne
-  </div>
+  <div class="base-one">BaseOne</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
@@ -24,7 +20,7 @@ export default {
   2.css选择器后面，被自动处理，添加上了属性选择器
   div[data-v-5f6a9d56]
 */
-div{
+div {
   border: 3px solid blue;
   margin: 30px;
 }
